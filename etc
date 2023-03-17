@@ -1,0 +1,53 @@
+//email//
+<a href="mailto:xxxx@xxxx.com" style="xxxxx;">Email</a></p>
+
+//align a image properly on the website//
+<br><div style="margin: 0 auto; width: fit-content;">
+<img src=" xxxxxxxx ">
+</div><br>
+
+//highlight a word to direct to other pages//
+<a href="https://www.example.com/xxxxx" style="xxxxx"> Word </a>
+
+//refresh the page//
+<button onclick="refreshPage()">Refresh Page</button> //html//
+
+function refreshPage() {
+  location.href = location.href;
+} //javascript//
+
+function refreshPage() {
+  location.reload();
+} //javascript//
+
+//search bar//
+<input type="text" id="search" placeholder="Search...">
+<ul id="list">
+  <li>Item 1</li>
+  <li>Item 2</li>
+  <li>Item 3</li>
+  <li>Item 4</li>
+</ul>
+  //javascript//
+const search = document.getElementById('search');
+const list = document.getElementById('list');
+
+search.addEventListener('input', function() {
+  const value = search.value.toLowerCase();
+
+  for (let i = 0; i < list.children.length; i++) {
+    const li = list.children[i];
+    const text = li.textContent.toLowerCase();
+
+    if (text.indexOf(value) !== -1) {
+      li.style.display = '';
+    } else {
+      li.style.display = 'none';
+    }
+  }
+});
+
+//select x number from questions list
+const randomQuestions = questions
+      .sort(() => 0.5 - Math.random())
+      .slice(0, x);
