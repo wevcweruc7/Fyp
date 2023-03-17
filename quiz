@@ -1,0 +1,337 @@
+<style>
+    .quiz-container {
+      width: 80%;
+      margin: 0 auto;
+      text-align: center;
+      font: 22px Arial;
+      font-weight: bold;
+    }
+
+    #question {
+      font-size: 40px;
+      margin-bottom: 20px;
+      color: yellow;
+    }
+   
+
+    .answers {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 25px;
+  border: 3px solid white;
+  padding: 5px;
+  font-size: 24px;
+  font-family: Arial;
+}
+
+.answers div {
+  width: 45%;
+  height: 150px;
+  margin: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 3px solid white;
+  padding: 5px;
+  background-color: white;
+  font-size: 28px;
+}
+.answers div:nth-child(1),
+.answers div:nth-child(2),
+.answers div:nth-child(3),
+.answers div:nth-child(4) {
+  border-color: aqua;
+}
+
+
+
+
+
+    .answer {
+      width: 30%;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .result {
+      font-size: 22px;
+      margin-top: 50px;
+      color: LawnGreen;
+    }
+
+    .correct {
+      color: green;
+    }
+
+    .incorrect {
+      color: red;
+    }
+  </style>
+
+
+  <div class="quiz-container">
+    <h2><strong>5 Quiz questions for basic computer knowledge<br><br><br><br> Question:</strong></h2>
+   <h6 style="color:aqua;"><strong> Some questions have images, please allow a few seconds between each question</strong></h6>
+    <p id="question"></p>
+    <div class="answers" id="answers"></div>
+    
+    <p class="result" id="result"></p>
+  </div>
+
+  <script>
+    const questions = [
+      {
+        question: "What does RAM stand for?",
+        answers: {
+          a: "Random Average Memory",
+          b: "Random Anti Memory",
+          c: "Random Access Memory",
+          d: "Random Arranged Memory"
+        },
+        correctAnswer: "c"
+      },
+      {
+        question: "Which of the following is not an input device?",
+        answers: {
+          a: "Microphone",
+          b: "Mouse",
+          c: "Monitor",
+          d: "Keyboard"
+        },
+        correctAnswer: "c"
+      },
+       {
+        question: "What is the brain of any computer system?",
+        answers: {
+          a: "Google Chrome",
+          b: "Windows XP",
+          c: "CPU",
+          d: "Motherboard"
+        },
+        correctAnswer: "c"
+      },
+ {
+        question: "Which of the following is hardware component?",
+        answers: {
+          a: "Adobe Photoshop",
+          b: "Keyboard",
+          c: "Windows Media Player",
+          d: "Google Chrome"
+        },
+        correctAnswer: "b"
+      },
+ {
+        question: "Which of the following is hardware component?",
+        answers: {
+          a: "GPU",
+          b: "Microsoft Edge",
+          c: "Apache Open Office",
+          d: "Paint 3D"
+        },
+        correctAnswer: "a"
+      },
+ {
+        question: "Which of the following is software component?",
+        answers: {
+          a: "Solid State Drive",
+          b: "Speakers",
+          c: "Windows Media Player",
+          d: "Motherboard"
+        },
+        correctAnswer: "c"
+      },
+ {
+        question: "Which of the following is software component?",
+        answers: {
+          a: "Adobe Photoshop",
+          b: "RAM",
+          c: "Motherboard",
+          d: "CPU"
+        },
+        correctAnswer: "a"
+      },
+ {
+        question: "What does SSD stand for?",
+        answers: {
+          a: "Solid State Device",
+          b: "Serial State Drive",
+          c: "Solid State Drive",
+          d: "Serial State Device"
+        },
+        correctAnswer: "c"
+      },
+ {
+        question: "Which of the following is a storage device?",
+        answers: {
+          a: "CPU",
+          b: "Motherboard",
+          c: "Files explorer",
+          d: "Solid State Drive"
+        },
+        correctAnswer: "d"
+      },
+{
+        question: "<br><img src='https://i.postimg.cc/9fYKWYWd/usb-g162aaad42-1280.jpg'><br> What is this computer component?",
+        answers: {
+          a: "CPU",
+          b: "Motherboard",
+          c: "Files explorer",
+          d: "Pendrive"
+        },
+        correctAnswer: "d"
+      },
+ {
+        question: "<br><img src='https://i.postimg.cc/5yc5CJ1m/mouse-g04eb749d1-1280.jpg'><br>What is this computer component?",
+        answers: {
+          a: "CPU",
+          b: "Motherboard",
+          c: "Files explorer",
+          d: "Mouse"
+        },
+        correctAnswer: "d"
+      },
+{
+        question: "<br><img src='https://i.postimg.cc/zvCRMvwG/lcd-g4880715dc-640.png'><br>What is this computer component?",
+        answers: {
+          a: "Monitor",
+          b: "Motherboard",
+          c: "Files explorer",
+          d: "Mouse"
+        },
+        correctAnswer: "a"
+      },
+{
+        question: "<br><img src='https://i.postimg.cc/8kHYMcG4/pc-gc08222cce-1280.jpg'><br>What is this computer component?",
+        answers: {
+          a: "Monitor",
+          b: "RAM",
+          c: "GPU",
+          d: "Keyboard"
+        },
+        correctAnswer: "c"
+      },
+{
+        question: "<br><img src='https://i.postimg.cc/PJVkdzQ3/cpu-g6f7e9d924-1280.jpg'><br>What is this computer component?",
+        answers: {
+          a: "Mouse",
+          b: "RAM",
+          c: "CPU",
+          d: "Keyboard"
+        },
+        correctAnswer: "c"
+      },
+{
+        question: "<br><img src='https://i.postimg.cc/9fZdvMqz/storage-g3a05554f0-1280.jpg'><br>What is this computer component?",
+        answers: {
+          a: "Keyboard",
+          b: "Hard disc drive",
+          c: "Motherboard",
+          d: "Fatherboard"
+        },
+        correctAnswer: "b"
+      },
+{
+        question: "<br><img src='https://i.postimg.cc/K8sv7rqy/computer-g21afeb1e9-1280.jpg'><br>What is the purpose of this computer component?",
+        answers: {
+          a: "Display image",
+          b: "Provide voltage and current to computer",
+          c: "To output sound",
+          d: "To store files"
+        },
+        correctAnswer: "b"
+      },
+{
+        question: "<br><img src='https://i.postimg.cc/zvCRMvwG/lcd-g4880715dc-640.png'><br>What is the purpose of this computer component?",
+        answers: {
+          a: "Display image",
+          b: "Store files",
+          c: "Do nothing",
+          d: "Enter text into the computer"
+        },
+        correctAnswer: "a"
+      },
+{
+        question: "<br><img src='https://i.postimg.cc/PJVkdzQ3/cpu-g6f7e9d924-1280.jpg'><br>What is the purpose of this computer component?",
+        answers: {
+          a: "To protect the PSU",
+          b: "Display image and video",
+          c: "Do nothing",
+          d: "Process instruction and carry out computation"
+        },
+        correctAnswer: "d"
+      },
+{
+        question: "<br><img src='https://i.postimg.cc/jdKsp6My/portable-computer-gb44ece14b-1280.png'><br>What is this?",
+        answers: {
+          a: "Hard disc drive",
+          b: "PlayStation 5",
+          c: "IPhone 15",
+          d: "Laptop"
+        },
+        correctAnswer: "d"
+      },
+{
+        question: "<br><img src='https://i.postimg.cc/jdKsp6My/portable-computer-gb44ece14b-1280.png'><br>What type of computer is this?",
+        answers: {
+          a: "Laptop",
+          b: "Desktop computer",
+          c: "Tablets",
+          d: "Smart phone"
+        },
+        correctAnswer: "a"
+      },
+];
+
+    let currentQuestion = 0;
+    let score = 0;
+
+    const randomQuestions = questions
+      .sort(() => 0.5 - Math.random())
+      .slice(0, 5);
+
+    function displayQuestion() {
+      let q = randomQuestions[currentQuestion];
+      let num = currentQuestion + 1;
+
+      document.querySelector("#question").innerHTML = `Question ${num}: ${q.question}`;
+      document.querySelector("#answers").innerHTML = "";
+
+      for (letter in q.answers) {
+        document.querySelector("#answers").innerHTML += `
+          <div class="answer" onclick="checkAnswer('${letter}')">
+            ${letter}. ${q.answers[letter]}
+          </div>
+        `;
+      }
+    }
+
+    function checkAnswer(answer) {
+      if (answer === randomQuestions[currentQuestion].correctAnswer) {
+        score++;
+      }
+
+      currentQuestion++;
+
+      if (currentQuestion === randomQuestions.length) {
+        document.querySelector("#question").innerHTML = "";
+        document.querySelector("#answers").innerHTML = "";
+        document.querySelector("#result").innerHTML =" Your score: " + score + "/" + randomQuestions.length;
+        if (score === randomQuestions.length) {
+          document.querySelector("#result").innerHTML += "<br>Excellent!";
+        } else if (score / randomQuestions.length >= 0.75) {
+          document.querySelector("#result").innerHTML += "<br>Congratulations! You did great.";
+        } else if (score / randomQuestions.length >= 0.5) {
+          document.querySelector("#result").innerHTML += "<br>You passed. Good job.";
+        } else {
+          document.querySelector("#result").innerHTML += "<br>Unfortunately, you failed. Please have a look at the basic computer knowledge page in our website, <a href='https://www.ictforstudents.com/software' style='color: aqua;'> Software </a> and <a href='https://www.example.com/basic-computer-knowledge' style='color: aqua;'> Hardware </a> page";
+        }
+      } else {
+        displayQuestion();
+      }
+    }
+
+    displayQuestion();
+    
+    <h4><strong>If you want to restart the Quiz, kindly refresh the website by pressing F5 on your keyboard or <a href="#" onclick="location.reload();" style="color:aqua" ;="">click here</a></strong></h4>
+  </script>
