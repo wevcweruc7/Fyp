@@ -1,0 +1,224 @@
+<style>
+    .quiz-container {
+      width: 80%;
+      margin: 0 auto;
+      text-align: center;
+      font: 22px Arial;
+      font-weight: bold;
+    }
+
+    .question {
+      font-size: 30px;
+      margin-bottom: 20px;
+    }
+
+    .answers {
+      display: flex;
+      justify-content: space-evenly;
+      margin-bottom: 25px;
+      border: 3px;
+      border-color: white;
+      padding: 5px;
+      border-style: solid;
+      font-size: 20px;
+      font: Arial;
+    }
+.answers div {
+  border: 3px solid white;
+  padding: 5px;
+}
+  
+.answers div:nth-child(1) {
+  border-color: aqua;
+  background-color: white;
+}
+
+.answers div:nth-child(2) {
+  border-color: aqua;
+  background-color: white;
+}
+
+.answers div:nth-child(3) {
+  border-color: aqua;
+  background-color: white;
+}
+.answers div:nth-child(4) {
+  border-color: aqua;
+  background-color: white;
+}
+
+
+
+    .answer {
+      width: 30%;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .result {
+      font-size: 22px;
+      margin-top: 50px;
+    }
+
+    .correct {
+      color: green;
+    }
+
+    .incorrect {
+      color: red;
+    }
+  </style>
+
+
+  <div class="quiz-container">
+    <h2><strong>Quiz for basic computer knowledge</strong></h2>
+    <p id="question"></p>
+    <div class="answers" id="answers"></div>
+    <button id="submit">Submit</button>
+    <p class="result" id="result"></p>
+  </div>
+
+  <script>
+    const questions = [
+      {
+        question: "What does RAM stand for?",
+        answers: {
+          a: "Random Average Memory",
+          b: "Random Anti Memory",
+          c: "Random Access Memory",
+          d: "Random Arranged Memory"
+        },
+        correctAnswer: "c"
+      },
+      {
+        question: "Which of the following is not an input device?",
+        answers: {
+          a: "Microphone",
+          b: "Mouse",
+          c: "Monitor",
+          d: "GPU"
+        },
+        correctAnswer: "c"
+      },
+       {
+        question: "What is the brain of any computer system?",
+        answers: {
+          a: "Google Chrome",
+          b: "Windows XP",
+          c: "CPU",
+          d: "Motherboard"
+        },
+        correctAnswer: "c"
+      },
+ {
+        question: "Which of the following is hardware component?",
+        answers: {
+          a: "Adobe Photoshop",
+          b: "Keyboard",
+          c: "Windows Media Player",
+          d: "Google Chrome"
+        },
+        correctAnswer: "b"
+      },
+ {
+        question: "Which of the following is hardware component?",
+        answers: {
+          a: "GPU",
+          b: "Microsoft Edge",
+          c: "Apache Open Office",
+          d: "Paint 3D"
+        },
+        correctAnswer: "a"
+      },
+ {
+        question: "Which of the following is software component?",
+        answers: {
+          a: "Solid State Drive",
+          b: "Speakers",
+          c: "Windows Media Player",
+          d: "Motherboard"
+        },
+        correctAnswer: "c"
+      },
+ {
+        question: "Which of the following is software component?",
+        answers: {
+          a: "Adobe Photoshop",
+          b: "RAM",
+          c: "Motherboard",
+          d: "CPU"
+        },
+        correctAnswer: "a"
+      },
+ {
+        question: "What does SSD stand for?",
+        answers: {
+          a: "Solid State Device",
+          b: "Serial State Drive",
+          c: "Solid State Drive",
+          d: "Serial State Device"
+        },
+        correctAnswer: "c"
+      },
+ {
+        question: "Which of the following is a storage device?",
+        answers: {
+          a: "CPU",
+          b: "Motherboard",
+          c: "Files explorer",
+          d: "Solid State Drive"
+        },
+        correctAnswer: "d"
+      },
+    ];
+
+    let currentQuestion = 0;
+    let score = 0;
+
+    const randomQuestions = questions
+      .sort(() => 0.5 - Math.random())
+      .slice(0, 5);
+
+    function displayQuestion() {
+      let q = randomQuestions[currentQuestion];
+
+      document.querySelector("#question").innerHTML = q.question;
+      document.querySelector("#answers").innerHTML = "";
+
+      for (letter in q.answers) {
+        document.querySelector("#answers").innerHTML += `
+          <div class="answer" onclick="checkAnswer('${letter}')">
+            ${letter}. ${q.answers[letter]}
+          </div>
+        `;
+      }
+    }
+
+    function checkAnswer(answer) {
+      if (answer === randomQuestions[currentQuestion].correctAnswer) {
+        score++;
+      }
+
+      currentQuestion++;
+
+      if (currentQuestion === randomQuestions.length) {
+        document.querySelector("#question").innerHTML = "";
+        document.querySelector("#answers").innerHTML = "";
+        document.querySelector("#submit").style.display = "none";
+        document.querySelector("#result").innerHTML =" Your score: " + score + "/" + randomQuestions.length;
+        if (score === randomQuestions.length) {
+          document.querySelector("#result").innerHTML += "<br>Perfect score! You're a genius.";
+        } else if (score / randomQuestions.length >= 0.75) {
+          document.querySelector("#result").innerHTML += "<br>Congratulations! You did great.";
+        } else if (score / randomQuestions.length >= 0.5) {
+          document.querySelector("#result").innerHTML += "<br>You passed. Good job.";
+        } else {
+          document.querySelector("#result").innerHTML += "<br>Unfortunately, you failed. Better luck next time.";
+        }
+      } else {
+        displayQuestion();
+      }
+    }
+
+    displayQuestion();
+  </script>
